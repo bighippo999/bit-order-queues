@@ -53,6 +53,9 @@ Or, you can update orders (posts) directly in the database.
 
 == Changelog ==
 
+= 2.7 =
+* Attempting to add update integration for wp updates.
+
 = 2.6 =
 * Added print init to block print on payment/processing.
 * Added print call on order assigning to bit-expt or multi supplier.
