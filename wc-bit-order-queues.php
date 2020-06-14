@@ -1,20 +1,18 @@
 <?php
 
 /**
- * @link              http://www.blackicetrading.com
- * @since             1.0.0
- * @package           woocommerce_bit_order_queues
- *
  * @wordpress-plugin
- * Plugin Name:       WooCommerce BlackIce Order Queues
- * Plugin URI:        http://www.blackicetrading.com/plugin-bit-packingslips
- * Description:       Create queues from WooCommerce Attribute > Supplier
- * Version:           2.6.0
+ * Plugin Name:       WC BlackIce Order Queues
+ * Plugin URI:        http://www.blackicetrading.com/plugin-bit-order-queues
+ * Description:       Create queues from WooCommerce Attribute > Supplier. Automatically sorts orders. Prints orders.
+ * Version:           2.7.0
  * Author:            Dan
  * Author URI:        http://www.blackicetrading.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       woocommerce-bit-order-queues
+ * Text Domain:       wc-bit_order-queues
+ * WC requires at least: 4.0.0
+ * WC tested up to:   4.2.0
  */
 
 // If this file is called directly, abort.

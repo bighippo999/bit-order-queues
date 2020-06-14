@@ -1,8 +1,8 @@
 
-=== WooCommerce BIT Order Statuses ===
+=== WC BIT Order Queues ===
 Contributors: JD
 Donate link: http://www.blackicetrading.com
-Tags: woocommerce, orders, attributes, status
+Tags: woocommerce, orders, attributes, status, queues
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,16 +17,18 @@ Statuses for:
  Awaiting Dispatch
  Dispatched
  Query
-For use with BlackIce systems and automation. Untested/unsupported for others but should work without issue.
+Additional Status for Multiple Suppliers to be manually decided.
+
+For use with BlackIce systems and automation (printers and barcode readers). Untested/unsupported for other system.
 
 == Installation ==
 
-1. Upload `woocommerce-bit-order-statuses` to the `/wp-content/plugins/` directory
+1. Upload `wc-bit-order-queues` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 = Why am I getting a warning to create "Suppliers" attribute? =
-While active the plugin replies on the Suppliers Attribute.
+While active the plugin relies on the Suppliers Product Attribute.
 If this is not present, you will receive a warning until you create it.
 
 = What actions should I take before deactivating? =
@@ -34,7 +36,7 @@ As the Plugin registers order statuses, on deactivation these statuses will no l
 Before deactivating you should re-assign existing orders to a standard order status.
 
 = Do I need to re-assign orders if just checking for plugin conflicts? =
-No, if you temporarily deactivate the plugin you may notice missing orders, but they are still in the database and will reappear when the plugin is reactivate.
+No, if you temporarily deactivate the plugin you may notice missing orders, but they are still in the database and the queues/statuses will reappear when the plugin is reactivate.
 
 = How can I recover missing orders without reactivating the plugin? =
 You can update each orders (post) status via the database.
@@ -42,7 +44,7 @@ Because this is a more advanced topic we won't cover exactly how, but it's prett
 
 = What if I want to change the slug for a supplier? =
 You can update the slug via Product>Attributes>Suppliers>
-But before doing so you should re-assign any orders using the existing plug to another status.
+But before doing so you should re-assign any orders using the existing slug to another status.
 
 = What if I already changed the slug without first updating orders? =
 Again it's not a major problem, either change the slug back, re-assign orders, then update it again.
@@ -54,7 +56,7 @@ Or, you can update orders (posts) directly in the database.
 == Changelog ==
 
 = 2.7 =
-* Attempting to add update integration for wp updates.
+* Renamed the Plugin from woocommerce-bit-order-statuses to wc-bit-order-statuses
 
 = 2.6 =
 * Added print init to block print on payment/processing.
