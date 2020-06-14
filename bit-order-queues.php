@@ -10,7 +10,7 @@
  * Author URI:        http://www.blackicetrading.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wc-bit_order-queues
+ * Text Domain:       bit_order-queues
  * WC requires at least: 4.0.0
  * WC tested up to:   4.2.0
  */
@@ -20,8 +20,8 @@ if ( ! defined( 'WPINC' ) ) {
         die;
 }
 
-if ( ! class_exists( 'WC_BIT_Order_Queues' ) ) {
- class WC_BIT_Order_Queues {
+if ( ! class_exists( 'BIT_Order_Queues' ) ) {
+ class BIT_Order_Queues {
 
     public function __construct() {
 
@@ -482,6 +482,6 @@ if ( ! class_exists( 'WC_BIT_Order_Queues' ) ) {
    } // end function
 
  }
- $GLOBALS['WC_BIT_Order_Queues'] = new WC_BIT_Order_Queues();
- $GLOBALS['WC_BIT_Order_Queues']->init();
+ $GLOBALS['BIT_Order_Queues'] = new BIT_Order_Queues();
+ $GLOBALS['BIT_Order_Queues']->init();
 }

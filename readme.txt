@@ -23,7 +23,7 @@ For use with BlackIce systems and automation (printers and barcode readers). Unt
 
 == Installation ==
 
-1. Upload `wc-bit-order-queues` to the `/wp-content/plugins/` directory
+1. Upload `bit-order-queues` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
@@ -54,6 +54,9 @@ Or, you can update orders (posts) directly in the database.
 
 
 == Changelog ==
+
+= 2.7.1 =
+* Renamed the Plugin from wc-bit-order-statuses to bit-order-statuses after wordpress submission.
 
 = 2.7 =
 * Renamed the Plugin from woocommerce-bit-order-statuses to wc-bit-order-statuses
