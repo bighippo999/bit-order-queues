@@ -1,5 +1,5 @@
 
-=== WC BIT Order Queues ===
+=== BIT Order Queues for WooCommerce===
 Contributors: JD
 Donate link: http://www.blackicetrading.com
 Tags: woocommerce, orders, attributes, status, queues

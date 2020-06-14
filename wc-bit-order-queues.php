@@ -2,7 +2,7 @@
 
 /**
  * @wordpress-plugin
- * Plugin Name:       WooCommerce BlackIce Order Queues
+ * Plugin Name:       BlackIce Order Queues for WooCommerce
  * Plugin URI:        http://www.blackicetrading.com/plugin-bit-order-queues
  * Description:       Create queues from WooCommerce Attribute > Supplier. Automatically sorts orders. Prints orders.
  * Version:           2.7.0
@@ -91,7 +91,7 @@ if ( ! class_exists( 'WC_BIT_Order_Queues' ) ) {
    public function attributes_warning() {
         if (!taxonomy_exists('pa_supplier')) {
             $html = '<div class="notice notice-info is-dismissible">';
-            $html .= '<p>WooCommerce BlackIce Order Queues:  You must create a "Supplier" Attribute in Products>Attributes.</p>';
+            $html .= '<p>BlackIce Order Queues for WooCommerce:  You must create a "Supplier" Attribute in Products>Attributes.</p>';
             $html .= '</div>';
 
             echo $html;
