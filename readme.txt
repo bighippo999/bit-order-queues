@@ -1,10 +1,13 @@
 
 === BIT Order Queues for WooCommerce===
-Contributors: JD
+Contributors: blackicelmtd
 Donate link: http://www.blackicetrading.com
 Tags: woocommerce, orders, attributes, status, queues
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 5.4.2
+WC requires at least: 4.0.0
+WC tested up to: 4.2.0
 
 Add Queues for Order Processing for each supplier in Product>Attributes>Suppliers
 
@@ -51,9 +54,19 @@ Again it's not a major problem, either change the slug back, re-assign orders, t
 Or, you can update orders (posts) directly in the database.
 
 == Screenshots ==
-
+1. WooCommerce Products>Attributes
+2. WooCommerce Products>Attributes>Supplier
+3. Simple Product>Attributes>Supplier
+4. Variable Product>Attributes>Supplier
+5. Orders Screen, showing orders assigned to new queues.
+6. Order Status Dropdown on Order Screen
+7. Descision Flow to assigning order to Queues.
 
 == Changelog ==
+
+= 3.0.0 =
+* Renamed bit-order-statuses.php to blackice-order-statuses.php.
+* Reconfigured Print functions from WooCommerce Print Orders (Google Cloud Print) to WooCommerce Automatic Printing - PrintNode
 
 = 2.7.1 =
 * Renamed the Plugin from wc-bit-order-statuses to bit-order-statuses after wordpress submission.

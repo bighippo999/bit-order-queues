@@ -5,7 +5,7 @@
  * Plugin Name:       BlackIce Order Queues
  * Plugin URI:        http://www.blackicetrading.com/plugin-bit-order-queues
  * Description:       Create queues from WooCommerce Attribute > Supplier. Automatically sorts orders. Prints orders.
- * Version:           2.7.0
+ * Version:           3.0.0
  * Author:            Dan
  * Author URI:        http://www.blackicetrading.com
  * License:           GPL-2.0+
@@ -39,11 +39,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
 
         add_action( 'admin_notices', array( $this, 'attributes_warning' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'plugin_styles' ), 99 );
-//        add_action( 'woocommerce_thankyou', array( $this, 'auto_assign_status' ) );
-// disable thankyou page completion, replaced with ccheckout_order_processed and payment_complete.
-////        add_action( 'woocommerce_thankyou', array( $this, 'schedule_or_run_auto_assign_status' ) );
 
-//prep ready to change over from thankyou page to woocommerce order finished hooks.
         // Order processed happens for *all* orders/payment methods
         add_action('woocommerce_checkout_order_processed', array($this, 'woocommerce_checkout_order_processed'));
         // Payment complete happens only for some payment methods - ones that can be carried out over the Internet. For those, we don't want to move the order until they are completed. But when payment is complete, we always want to move.
@@ -55,8 +51,8 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
         add_action( 'bit_order_processing_schedule_event', array($this, 'check_processing_queue') );
 
         // deactive the automatic print on payment.
-        add_filter('woocommerce_print_orders_print_on_payment_complete', '__return_false');
-        add_filter('woocommerce_print_orders_print_order_upon_processed', '__return_false');
+        add_filter('woocommerce_print_orders_printnode_print_on_payment_complete', '__return_false');
+        add_filter('woocommerce_print_orders_printnode_print_order_now', '__return_false');
     }
 
     /**
@@ -119,7 +115,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
     * Add the CSS for order status colours.
     */
    public function plugin_styles() {
-       wp_enqueue_style( 'wc_bit_order_statuses', plugins_url('style.css', __FILE__) );
+       wp_enqueue_style( 'bit_order_queues', plugins_url('style.css', __FILE__) );
    }
 
    /**
@@ -466,7 +462,9 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
            if ( $order->get_status() == 'processing' ) {
                $order->update_status( $newslug );
                if ( $newslug == 'bit-rexp' ) {
-                   global $woocommerce_ext_printorders;
+//                   global $woocommerce_ext_printorders;
+//                   $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
+                   $woocommerce_ext_printorders = new WooCommerce_Simba_PrintOrders_PrintNode();
                    $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
                }
            }
@@ -475,7 +473,9 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
            if ( $order->get_status() == 'processing' ) {
                $order->update_status( $newslug );
                // print the order because it's going to multiple suppliers.
-               global $woocommerce_ext_printorders;
+//               global $woocommerce_ext_printorders;
+//               $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
+               $woocommerce_ext_printorders = new WooCommerce_Simba_PrintOrders_PrintNode();
                $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
            }
        } // end if
