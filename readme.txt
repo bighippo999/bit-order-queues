@@ -64,6 +64,9 @@ Or, you can update orders (posts) directly in the database.
 
 == Changelog ==
 
+= 3.0.1 =
+* FIXED: incorrect filters to block automatic printing of all orders. Documentation for printnode plugin incorrect and reported.
+
 = 3.0.0 =
 * Renamed bit-order-statuses.php to blackice-order-statuses.php.
 * Reconfigured Print functions from WooCommerce Print Orders (Google Cloud Print) to WooCommerce Automatic Printing - PrintNode
