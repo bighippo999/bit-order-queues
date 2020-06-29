@@ -51,10 +51,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
         add_action( 'bit_order_processing_schedule_event', array($this, 'check_processing_queue') );
 
         // deactive the automatic print on payment.
-//        add_filter('woocommerce_print_orders_printnode_print_on_payment_complete', '__return_false');
-//        add_filter('woocommerce_print_orders_printnode_order_upon_processed', '__return_false');
-//        add_filter('woocommerce_print_orders_printnode_print_order_now', '__return_false');
-        add_filter('woocommerce_printnode_printnode_print_on_payment_complete', '__return_false');
+        add_filter('woocommerce_printorders_printnode_print_on_payment_complete', '__return_false');
         add_filter('woocommerce_printorders_printnode_print_order_now', '__return_false');
     }
 
