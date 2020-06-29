@@ -64,6 +64,9 @@ Or, you can update orders (posts) directly in the database.
 
 == Changelog ==
 
+= 3.0.2 =
+* UPDATE: update the filters to block automatic printing after PrintNode plugin update fixing their error.
+
 = 3.0.1 =
 * FIXED: incorrect filters to block automatic printing of all orders. Documentation for printnode plugin incorrect and reported.
 

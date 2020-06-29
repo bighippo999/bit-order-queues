@@ -5,7 +5,7 @@
  * Plugin Name:       BlackIce Order Queues
  * Plugin URI:        http://www.blackicetrading.com/plugin-bit-order-queues
  * Description:       Create queues from WooCommerce Attribute > Supplier. Automatically sorts orders. Prints orders.
- * Version:           3.0.1
+ * Version:           3.0.2
  * Author:            Dan
  * Author URI:        http://www.blackicetrading.com
  * License:           GPL-2.0+
