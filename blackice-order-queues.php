@@ -195,6 +195,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
        } else {
 
        }
+   ksort( $order_statuses );
    return $order_statuses;
 
    }
