@@ -26,6 +26,10 @@
     color: #383838;
 }
 
+.subsubsub .wc-bit-wait{
+    background-color: #ffdd90;
+}
+
 /* Pale Blue Waiting on dispatch */
 .order-status.status-bit-adis,
 .order-status.status-dunamis-adis,
@@ -39,11 +43,18 @@
 /* Pale Yellow  */
 .order-status.status-bit-comp,
 .order-status.status-dunamis-comp,
-.order-status.status-gf-await-comp,
+.order-status.status-gf-comp,
 .order-status.status-ppe-comp,
 .order-status.status-totr-comp{
     background: #f3f8a7;
     color: #383838;
+}
+.subsubsub .wc-bit-comp,
+.subsubsub .wc-dunamis-comp,
+.subsubsub .wc-gf-comp,
+.subsubsub .wc-ppe-comp,
+.subsubsub .wc-totr-comp{
+    background-color: #f3f8a7;
 }
 
 /* Bright Red Needs immediate action or query on order */
@@ -55,4 +66,19 @@
 .order-status.status-bit-multi{
     background: #ff3737;
     color: #fff;
+}
+
+.subsubsub .wc-bit-qery,
+.subsubsub .wc-dunamis-qery,
+.subsubsub .wc-gf-await-qery,
+.subsubsub .wc-ppe-qery,
+.subsubsub .wc-totr-qery,
+.subsubsub .wc-bit-multi{
+    background-color: #ff3737;
+}
+        
+
+.subsubsub .wc-gf-errapi,
+.subsubsub .wc-gf-errart{
+    background-color: #f00;
 }

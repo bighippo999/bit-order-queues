@@ -5,14 +5,14 @@
  * Plugin Name:       BlackIce Order Queues
  * Plugin URI:        http://www.blackicetrading.com/plugin-bit-order-queues
  * Description:       Create queues from WooCommerce Attribute > Supplier. Automatically sorts orders. Prints orders.
- * Version:           3.0.2
+ * Version:           3.0.3
  * Author:            Dan
  * Author URI:        http://www.blackicetrading.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       bit_order-queues
  * WC requires at least: 4.0.0
- * WC tested up to:   4.2.0
+ * WC tested up to:   4.5.2
  */
 
 // If this file is called directly, abort.
@@ -160,13 +160,53 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
                'show_in_admin_status_list' => true,
                'label_count'               => _n_noop( 'BIT (Processing) <span class="count">(%s)</span>', 'BIT (Processing) <span class="count">(%s)</span>', 'woocommerce' ),
            );
+           $order_statuses['wc-bit-aimp'] = array(
+               'label'                     => _x( 'BIT (Packingslip Printed', 'Order Status', 'woocommerce' ),
+               'public'                    => false,
+               'exclude_from_search'       => false,
+               'show_in_admin_all_list'    => true,
+               'show_in_admin_status_list' => true,
+               'label_count'               => _n_noop( 'BIT (Packingslip Printed) <span class="count">(%s)</span>', 'BIT (Packingslip Printed) <span class="count">(%s)</span>', 'woocommerce' ),
+           );
+           $order_statuses['wc-bit-adis'] = array(
+               'label'                     => _x( 'BIT (Packed)', 'Order Status', 'woocommerce' ),
+               'public'                    => false,
+               'exclude_from_search'       => false,
+               'show_in_admin_all_list'    => true,
+               'show_in_admin_status_list' => true,
+               'label_count'               => _n_noop( 'BIT (Packed) <span class="count">(%s)</span>', 'BIT (Packed) <span class="count">(%s)</span>', 'woocommerce' ),
+           );
+           $order_statuses['wc-bit-wait'] = array(
+               'label'                     => _x( 'BIT (Awaiting Action)', 'Order Status', 'woocommerce' ),
+               'public'                    => false,
+               'exclude_from_search'       => false,
+               'show_in_admin_all_list'    => true,
+               'show_in_admin_status_list' => true,
+               'label_count'               => _n_noop( 'BIT (Awaiting Action) <span class="count">(%s)</span>', 'BIT (Awaiting Action) <span class="count">(%s)</span>', 'woocommerce' ),
+           );
+           $order_statuses['wc-bit-qery'] = array(
+               'label'                     => _x( 'BIT (Query)', 'Order Status', 'woocommerce' ),
+               'public'                    => false,
+               'exclude_from_search'       => false,
+               'show_in_admin_all_list'    => true,
+               'show_in_admin_status_list' => true,
+               'label_count'               => _n_noop( 'BIT (Query) <span class="count">(%s)</span>', 'BIT (Query) <span class="count">(%s)</span>', 'woocommerce' ),
+           );
+           $order_statuses['wc-bit-prsub'] = array(
+               'label'                     => _x( 'BIT (To Sublimate)', 'Order Status', 'woocommerce' ),
+               'public'                    => false,
+               'exclude_from_search'       => false,
+               'show_in_admin_all_list'    => true,
+               'show_in_admin_status_list' => true,
+               'label_count'               => _n_noop( 'BIT (To Sublimate) <span class="count">(%s)</span>', 'BIT (To Sublimate) <span class="count">(%s)</span>', 'woocommerce' ),
+           );
            $order_statuses['wc-bit-multi'] = array(
                'label'                     => _x( 'Multiple Suppliers (To Process)', 'Order Status', 'woocommerce' ),
                'public'                    => false,
                'exclude_from_search'       => false,
                'show_in_admin_all_list'    => true,
                'show_in_admin_status_list' => true,
-               'label_count'               => _n_noop( 'Multiple Suppleir (To Process) <span class="count">(%s)</span>', 'Multiple Suppliers (Process) <span class="count">(%s)</span>', 'woocommerce' ),
+               'label_count'               => _n_noop( 'Multiple Supplier (To Process) <span class="count">(%s)</span>', 'Multiple Suppliers (Process) <span class="count">(%s)</span>', 'woocommerce' ),
            );
            foreach ( $terms as $term ) {
                $name = $term->name;
@@ -195,7 +235,6 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
        } else {
 
        }
-   ksort( $order_statuses );
    return $order_statuses;
 
    }
@@ -221,6 +260,11 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
            ];
 
           $order_statuses['wc-bit-rexp'] = _x( 'BIT (Processing)', 'Order status', 'woocommerce' );
+          $order_statuses['wc-bit-aimp'] = _x( 'BIT (Packingslip Printed)', 'Order status', 'woocommerce' );
+          $order_statuses['wc-bit-adis'] = _x( 'BIT (Packed)', 'Order status', 'woocommerce' );
+          $order_statuses['wc-bit-wait'] = _x( 'BIT (Awaiting Action)', 'Order status', 'woocommerce' );
+          $order_statuses['wc-bit-qery'] = _x( 'BIT (Query)', 'Order status', 'woocommerce' );
+          $order_statuses['wc-bit-prsub'] = _x( 'BIT (To Sublimate)', 'Order status', 'woocommerce' );
           $order_statuses['wc-bit-multi'] = _x( 'Multiple Suppliers (To Process)', 'Order status', 'woocommerce' );
 
           foreach ( $terms as $term ) {
@@ -268,6 +312,13 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
                    "ppe",
            ];
 
+           $bulk_actions['mark_bit-rexp'] = _x( 'Change status to BIT (Processing)', 'Order status', 'woocommerce' );
+           $bulk_actions['mark_bit-aimp'] = _x( 'Change status to BIT (Packingslip Printed)', 'Order status', 'woocommerce' );
+           $bulk_actions['mark_bit-adis'] = _x( 'Change status to BIT (Packed)', 'Order status', 'woocommerce' );
+           $bulk_actions['mark_bit-wait'] = _x( 'Change status to BIT (Awaiting Action)', 'Order status', 'woocommerce' );
+           $bulk_actions['mark_bit-qery'] = _x( 'Change status to BIT (Query)', 'Order status', 'woocommerce' );
+           $bulk_actions['mark_bit-prsub'] = _x( 'Change status to BIT (To Sublimate)', 'Order status', 'woocommerce' );
+
            foreach ( $terms as $term ) {
                $name = $term->name;
                $slug = $term->slug;
@@ -284,7 +335,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
                    $lenavailable = 18 - 3 - strlen($endslug);
                    $cutslug = substr( $slug, 0, $lenavailable );
                    $baction = "mark_" . $cutslug . $endslug;
-                   $bulk_actions[$baction] = 'Change status to  ' . $newname;
+                   $bulk_actions[$baction] = 'Change status to ' . $newname;
                }
            }
       } else {

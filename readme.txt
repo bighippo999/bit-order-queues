@@ -5,9 +5,9 @@ Donate link: http://www.blackicetrading.com
 Tags: woocommerce, orders, attributes, status, queues
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tested up to: 5.4.2
+Tested up to: 5.5.1
 WC requires at least: 4.0.0
-WC tested up to: 4.2.0
+WC tested up to: 4.5.2
 
 Add Queues for Order Processing for each supplier in Product>Attributes>Suppliers
 
@@ -63,6 +63,10 @@ Or, you can update orders (posts) directly in the database.
 7. Descision Flow to assigning order to Queues.
 
 == Changelog ==
+
+= 3.0.3 =
+* UPDATE: Tested upto version info.
+* FIX: incorrect submission of gf-submitter plugin file.
 
 = 3.0.2 =
 * UPDATE: update the filters to block automatic printing after PrintNode plugin update fixing their error.
