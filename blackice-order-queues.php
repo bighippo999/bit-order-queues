@@ -5,7 +5,7 @@
  * Plugin Name:       BlackIce Order Queues
  * Plugin URI:        http://www.blackicetrading.com/plugin-bit-order-queues
  * Description:       Create queues from WooCommerce Attribute > Supplier. Automatically sorts orders. Prints orders.
- * Version:           3.0.4
+ * Version:           3.0.5
  * Author:            Dan
  * Author URI:        http://www.blackicetrading.com
  * License:           GPL-2.0+
@@ -169,6 +169,14 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
                'show_in_admin_status_list' => true,
                'label_count'               => _n_noop( 'BIT (Processing) <span class="count">(%s)</span>', 'BIT (Processing) <span class="count">(%s)</span>', 'woocommerce' ),
            );
+           $order_statuses['wc-bit-pend-pay'] = array(
+               'label'                     => _x( 'BIT (Pending Payment)', 'Order Status', 'woocommerce' ),
+               'public'                    => false,
+               'exclude_from_search'       => false,
+               'show_in_admin_all_list'    => true,
+               'show_in_admin_status_list' => true,
+               'label_count'               => _n_noop( 'BIT (Pending Payment) <span class="count">(%s)</span>', 'BIT (Pending Payment) <span class="count">(%s)</span>', 'woocommerce' ),
+           );
            $order_statuses['wc-bit-aimp'] = array(
                'label'                     => _x( 'BIT (Packingslip Printed', 'Order Status', 'woocommerce' ),
                'public'                    => false,
@@ -269,6 +277,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
            ];
 
           $order_statuses['wc-bit-rexp'] = _x( 'BIT (Processing)', 'Order status', 'woocommerce' );
+          $order_statuses['wc-bit-pend-pay'] = _x( 'BIT (Pending Payment)', 'Order status', 'woocommerce' );
           $order_statuses['wc-bit-aimp'] = _x( 'BIT (Packingslip Printed)', 'Order status', 'woocommerce' );
           $order_statuses['wc-bit-adis'] = _x( 'BIT (Packed)', 'Order status', 'woocommerce' );
           $order_statuses['wc-bit-wait'] = _x( 'BIT (Awaiting Action)', 'Order status', 'woocommerce' );
@@ -322,6 +331,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
            ];
 
            $bulk_actions['mark_bit-rexp'] = _x( 'Change status to BIT (Processing)', 'Order status', 'woocommerce' );
+           $bulk_actions['mark_bit-pend-pay'] = 'Change status to  BIT (Pending Payment)';
            $bulk_actions['mark_bit-aimp'] = _x( 'Change status to BIT (Packingslip Printed)', 'Order status', 'woocommerce' );
            $bulk_actions['mark_bit-adis'] = _x( 'Change status to BIT (Packed)', 'Order status', 'woocommerce' );
            $bulk_actions['mark_bit-wait'] = _x( 'Change status to BIT (Awaiting Action)', 'Order status', 'woocommerce' );
