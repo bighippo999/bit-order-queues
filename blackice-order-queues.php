@@ -56,6 +56,15 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
     }
 
     /**
+     * Captains Log
+     */
+    public function log_it( $level, $message ) {
+        $logger = wc_get_logger();
+        $context = array( 'source' => 'blackice-order-queues' );
+        $logger->$level( $message, $context);
+    }
+
+    /**
      * The code that runs during plugin activation.
      */
     public function plugin_activate() {
@@ -375,8 +384,10 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
    public function schedule_or_run_auto_assign_status( $order_id ) {
        // If Action Scheduler is available, queue the auto_assign_status action, otheriwse run it now.
        if ( function_exists( 'as_enqueue_async_action' ) ) {
+           $this->log_it( "info", "Scheduling auto assign for order: " . $order_id );
            as_enqueue_async_action( 'bit_order_queues_schedule_event', array( $order_id ), "Order Status Update" );
        } else {
+           $this->log_it( "info", "Unable to schedule. Running auto assign now for order: " . $order_id );
            $this->auto_assign_status( $order_id );
        }
    }
@@ -386,6 +397,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
     * This cleans up any orders left in processing. Limit to 5 at a time.
     */
    public function check_processing_queue() {
+      $this->log_it( "info", "Starting processing queue check..." );
       $args = array(
           'status' => 'processing',
           'limit' => 5,
@@ -397,6 +409,7 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
        foreach ( $orders as $order ) {
            $this->schedule_or_run_auto_assign_status( $order );
        }
+       $this->log_it( "info", "Finished processing queue check." );
    }
 
    /**
@@ -512,8 +525,10 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
            $lenavailable = 18 - 3 - strlen($endslug);
            $newslug = substr($slug, 0, $lenavailable) . $endslug;
            if ( $order->get_status() == 'processing' ) {
+               $this->log_it( "info", count($suppliers) . " Possible Suppliers. Updating order: " . $order_id . " To status : " . $newslug );
                $order->update_status( $newslug );
                if ( $newslug == 'bit-rexp' ) {
+                     $this->log_it( "info", "Printing Packingslip for order: " . $order_id );
 //                   global $woocommerce_ext_printorders;
 //                   $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
                    $woocommerce_ext_printorders = new WooCommerce_Simba_PrintOrders_PrintNode();
@@ -523,10 +538,12 @@ if ( ! class_exists( 'BIT_Order_Queues' ) ) {
        } elseif ( ( count($suppliers) > 1) && ( $abort_assign == false ) ) {
            $newslug = 'wc-bit-multi';
            if ( $order->get_status() == 'processing' ) {
+               $this->log_it( "info", count($suppliers) . " Possible Suppliers. Updating order: " . $order_id . " To status : " . $newslug );
                $order->update_status( $newslug );
                // print the order because it's going to multiple suppliers.
 //               global $woocommerce_ext_printorders;
 //               $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
+                     $this->log_it( "info", "Printing Packingslip for order: " . $order_id );
                $woocommerce_ext_printorders = new WooCommerce_Simba_PrintOrders_PrintNode();
                $woocommerce_ext_printorders->woocommerce_print_order_go($order_id);
            }
