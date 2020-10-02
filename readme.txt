@@ -64,6 +64,9 @@ Or, you can update orders (posts) directly in the database.
 
 == Changelog ==
 
+= 3.0.4 =
+* Added: logging.
+
 = 3.0.3 =
 * UPDATE: Tested upto version info.
 * FIX: incorrect submission of gf-submitter plugin file.
