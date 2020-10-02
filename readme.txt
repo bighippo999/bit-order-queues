@@ -64,6 +64,9 @@ Or, you can update orders (posts) directly in the database.
 
 == Changelog ==
 
+= 3.0.5 =
+* Added BIT (Pending Payment) status for portal.
+
 = 3.0.4 =
 * Added: logging.
 
