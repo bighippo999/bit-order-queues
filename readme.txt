@@ -26,7 +26,7 @@ For use with BlackIce systems and automation (printers and barcode readers). Unt
 
 == Installation ==
 
-1. Upload `bit-order-queues` to the `/wp-content/plugins/` directory
+1. Upload `bit-wc-order-queues` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
